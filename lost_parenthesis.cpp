@@ -2,16 +2,36 @@
 using namespace std;
 #include <string>
 
+int num = 0;
+int m = 0;
+string tmp = "";
 string s;
-int min;
 
-void find_min(){
-for(int i = 0; i<s.size();i++){
-    
+void find_num(void)
+{
+	for (int i = 0; i <= s.size(); ++i){
+		if (s[i] == '+' || s[i] == '-' || s[i] == '\0'){
+			if (m) {
+				num -= stoi(tmp);
+			}
+			else {
+				num += stoi(tmp);
+			}
+ 
+			if (s[i] == '-') {
+				m = 1;
+			}
+ 
+			tmp = "";
+			continue;
+		}
+ 
+		tmp += s[i];
+	}
 }
-}
+
 int main(int argc, char *argv[]){
     cin>>s;
-    find_min();//문제 해결함수
-    cout<<min;//최소값 출력
+    find_num();//문제 해결함수
+    cout<<num;//최소값 출력
 }
